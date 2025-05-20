@@ -1,0 +1,1 @@
+# Stock-Trend-Visualizer-for-Tech-Companies

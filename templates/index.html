@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Analysis</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Inventory Analysis</h2>
+        <form method="POST">
+            <div class="form-group">
+                <label for="companyName">Select Company:</label>
+                <select class="form-control" id="companyName" name="companyName">
+                    {% for company in companies %}
+                        <option value="{{ company }}">{{ company }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="month">Select Month:</label>
+                <select class="form-control" id="month" name="month">
+                    {% for month in months %}
+                        <option value="{{ month }}">{{ month }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="year">Select Year:</label>
+                <select class="form-control" id="year" name="year">
+                    {% for year in years %}
+                        <option value="{{ year }}">{{ year }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <div id="stockChart">
+                    {{ graph_stock | safe }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div id="avgPriceChart">
+                    {{ graph_avg_price | safe }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <div id="totalsChart">
+                    {{ graph_totals | safe }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-5">
+            <div class="col-md-12">
+                {{ table | safe }}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
